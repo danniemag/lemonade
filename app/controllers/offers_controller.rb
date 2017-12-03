@@ -4,7 +4,11 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    @offers = Offer.all
+    if current_user.admin?
+      @offers = Offer.all
+    else
+      render 'offers/commonuser'
+    end
   end
 
   # GET /offers/1
@@ -69,6 +73,10 @@ class OffersController < ApplicationController
   def disable_please
     Offer.find_by_id(params[:offer_id]).disable!
     redirect_to offers_path
+  end
+
+  def commonuser
+    redirect_to offer_commonuser_path
   end
 
   private
