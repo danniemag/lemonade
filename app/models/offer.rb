@@ -1,6 +1,9 @@
 class Offer < ApplicationRecord
   include AASM
 
+  validates :advertiser_name, :url, :description, :starts_at, presence: true
+  validates :advertiser_name, uniqueness: true
+
   aasm :column => 'offer_state' do
     state :disabled, :initial => true
     state :enabled

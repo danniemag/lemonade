@@ -11,6 +11,7 @@
       <th>Starts at</th>
       <th>Ends at</th>
       <th>Premium</th>
+      <th>State</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -23,9 +24,18 @@
         <td><%= offer.description %></td>
         <td><%= offer.starts_at %></td>
         <td><%= offer.ends_at %></td>
-        <td><%= offer.premium %></td>
-        <td><%= link_to 'Show', offer %></td>
+        <td><%= offer.premium.to_s.capitalize %></td>
+        <td><%= offer.offer_state %></td>
         <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
+        <% if offer.disabled? %>
+          <td>
+            <%= link_to 'Enable', offer_enable_please_path(offer.id), method: :put %>
+          </td>
+        <% elsif offer.enabled? %>
+            <td>
+              <%= link_to 'Disable', offer_disable_please_path(offer.id), method: :put %>
+            </td>
+        <% end %>
         <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>

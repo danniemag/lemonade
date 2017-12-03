@@ -35,7 +35,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Gems specified for THIS project -------------------------
 # Simple Form
-# gem 'simple_form'
+gem 'simple_form'
 # StateMachine
 gem 'aasm'
 

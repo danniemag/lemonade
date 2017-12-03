@@ -61,6 +61,16 @@ class OffersController < ApplicationController
     end
   end
 
+  def enable_please
+    Offer.find_by_id(params[:offer_id]).enable!
+    redirect_to offers_path
+  end
+
+  def disable_please
+    Offer.find_by_id(params[:offer_id]).disable!
+    redirect_to offers_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_offer
@@ -69,6 +79,7 @@ class OffersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def offer_params
-      params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium)
+      params.require(:offer).permit(:advertiser_name, :url, :description, :starts_at, :ends_at, :premium, :offer_state)
     end
+
 end
