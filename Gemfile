@@ -40,6 +40,8 @@ gem 'simple_form'
 gem 'aasm'
 # Use Devise for authentication
 gem 'devise'
+# Use Gentelella for theme
+gem 'gentelella-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

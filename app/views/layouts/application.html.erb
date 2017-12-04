@@ -2,15 +2,52 @@
 <html>
   <head>
     <title>Lemonade</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 
+    <!--%= favicon_link_tag 'favicon.png' %>-->
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' %>
+    <%= stylesheet_link_tag    'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.0.0-7/css/ionicons.min.css' %>
+    <%= stylesheet_link_tag    'https://adminlte.io/themes/AdminLTE/bower_components/jvectormap/jquery-jvectormap.css' %>
+    <%= stylesheet_link_tag    'https://adminlte.io/themes/AdminLTE/dist/css/AdminLTE.min.css' %>
+    <%= stylesheet_link_tag    'https://adminlte.io/themes/AdminLTE/dist/css/skins/_all-skins.min.css' %>
+
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/bower_components/jquery/dist/jquery.min.js' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/bower_components/fastclick/lib/fastclick.js' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/dist/js/adminlte.min.js' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js' %>
+    <%= javascript_include_tag 'https://adminlte.io/themes/AdminLTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js' %>
+
+    <!-- Google Font -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
+  <% if !(user_signed_in?) %>
+    <body class="hold-transition login-page">
+      <%= yield %>
+    </body>
+
+  <% else %>
+    <body class="hold-transition skin-green sidebar-mini fixed">
+      <div class="wrapper">
+        <!--% flash.each do |key, value| %>-->
+            <!--<div align="center" id="flash" class="alert alert-%= key %>">%= value %></div>-->
+        <!--% end %>-->
+
+        <%= render 'partials/topnav' %>
+        <%= render 'partials/sidenav' %>
+        <%= yield %>
+      </div>
+    </body>
+  <% end %>
+    <!--%= render 'partials/footer' %>-->
+    <!--%= javascript_include_tag 'footermanifest', 'data-turbolinks-track' => true %>-->
 </html>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
