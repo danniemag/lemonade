@@ -1,0 +1,35 @@
+<%= link_to('Logout', destroy_user_session_path, method: :delete) %>
+
+<h1>Cashback Page</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Advertiser name</th>
+    <th>Url</th>
+    <th>Description</th>
+    <th>Starts at</th>
+    <th>Ends at</th>
+    <th>Premium</th>
+    <th>State</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @active_offers.each do |actv| %>
+      <tr>
+        <% if actv.premium? %>
+          <td><%= actv.advertiser_name %></td>
+          <td><%= actv.url %></td>
+          <td><%= actv.description %></td>
+          <td><%= actv.starts_at %></td>
+          <td><%= actv.ends_at %></td>
+          <td><%= actv.premium.to_s.capitalize %></td>
+          <td><%= actv.offer_state.upcase %></td>
+          <td><%= link_to 'Purchase', edit_offer_path(actv) %></td>
+        <% end %>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

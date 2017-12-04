@@ -4,11 +4,7 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    if current_user.admin?
-      @offers = Offer.all
-    else
-      render 'offers/commonuser'
-    end
+    current_user.admin? ? (@offers = Offer.all) : (render 'offers/cashback')
   end
 
   # GET /offers/1
@@ -77,6 +73,10 @@ class OffersController < ApplicationController
 
   def commonuser
     redirect_to offer_commonuser_path
+  end
+
+  def cashback
+    @active_offers = Offer.all.where(:offer_state => true)
   end
 
   private
