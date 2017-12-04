@@ -4,7 +4,12 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
-    current_user.admin? ? (@offers = Offer.all) : (render 'offers/cashback')
+    if current_user.admin?
+      @offers = Offer.all
+    else
+      @offers = Offer.where(:offer_state => :enabled)
+      render :index_users
+    end
   end
 
   # GET /offers/1
@@ -61,22 +66,17 @@ class OffersController < ApplicationController
     end
   end
 
-  def enable_please
+  def enabler
     Offer.find_by_id(params[:offer_id]).enable!
     redirect_to offers_path
   end
 
-  def disable_please
+  def disabler
     Offer.find_by_id(params[:offer_id]).disable!
     redirect_to offers_path
   end
 
-  def commonuser
-    redirect_to offer_commonuser_path
-  end
-
-  def cashback
-    @active_offers = Offer.all.where(:offer_state => true)
+  def index_users
   end
 
   private
