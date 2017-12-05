@@ -1,37 +1,148 @@
-<p id="notice"><%= notice %></p>
+<!-- CONTENT  ----------------------------------------------------------------------------------------------- -->
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1>
+      Offers
+      <small>Now let's get in-formation!</small>
+    </h1>
+    <ol class="breadcrumb">
+      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+      <li class="active">Offers</li>
+    </ol>
+  </section>
 
-<h1>Offers</h1>
+  <!-- Main content -->
+  <section class="content">
+    <!-- Main row -->
+    <div class="row">
+      <!-- Left col -->
+      <div class="col-md-12">
 
-<table>
-  <thead>
-    <tr>
-      <th>Advertiser name</th>
-      <th>Url</th>
-      <th>Description</th>
-      <th>Starts at</th>
-      <th>Ends at</th>
-      <th>Premium</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+        <!-- TABLE: LATEST ORDERS -->
+        <div class="box box-info">
+          <div class="box-header with-border">
+            <h3 class="box-title">Latest Offers</h3>
 
-  <tbody>
-    <% @offers.each do |offer| %>
-      <tr>
-        <td><%= offer.advertiser_name %></td>
-        <td><%= offer.url %></td>
-        <td><%= offer.description %></td>
-        <td><%= offer.starts_at %></td>
-        <td><%= offer.ends_at %></td>
-        <td><%= offer.premium %></td>
-        <td><%= link_to 'Show', offer %></td>
-        <td><%= link_to 'Edit', edit_offer_path(offer) %></td>
-        <td><%= link_to 'Destroy', offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <div class="table-responsive">
+              <table class="table no-margin">
+                <thead>
+                <tr>
+                  <th>Advertiser Name</th>
+                  <th>URL</th>
+                  <th>Description</th>
+                  <th>Starts At</th>
+                  <th>Ends At</th>
+                  <th>Premium</th>
+                  <th>Enabled</th>
+                  <th>#</th>
+                </tr>
+                </thead>
 
-<br>
+                <% @offers.each do |offer| %>
+                  <tbody>
+                  <tr>
+                    <td><%= offer.advertiser_name %></td>
+                    <td><%= offer.url %></td>
+                    <td><%= offer.description %></td>
+                    <td><%= offer.starts_at.strftime('%d/%m/%Y %H:%M') %></td>
+                    <td><%= offer.ends_at.strftime('%d/%m/%Y %H:%M') %></td>
+                    <td><%= offer.premium.to_s.capitalize %></td>
+                    <td>
+                      <% if offer.disabled? %>
+                        <span class="label label-default"><%= offer.offer_state.upcase %></span>
+                      <% else %>
+                        <span class="label label-success"><%= offer.offer_state.upcase %></span>
+                      <% end %>
+                    </td>
+                    <td>
+                      <%= link_to '<i class="fa fa-pencil" aria-hidden="true"></i>'.html_safe, edit_offer_path(offer),
+                                  class: 'btn btn-block btn-primary btn-xs' %>
+                    </td>
+                    <% if offer.disabled? %>
+                      <td>
+                        <%= link_to 'Enable/Disable', offer_enabler_path(offer.id),
+                                    method: :put, class: 'btn btn-block btn-default btn-xs' %>
+                      </td>
+                    <% elsif offer.enabled? %>
+                      <td>
+                        <%= link_to 'Enable/Disable', offer_disabler_path(offer.id),
+                                    method: :put, class: 'btn btn-block btn-default btn-xs' %>
+                      </td>
+                    <% end %>
+                    <td>
+                      <%= link_to '<i class="fa fa-trash" aria-hidden="true"></i>'.html_safe, offer, method: :delete,
+                                  data: { confirm: 'Are you sure?' }, class: 'btn btn-block btn-danger btn-xs'%>
+                    </td>
+                  </tr>
+                  </tbody>
+                <% end %>
+              </table>
+            </div>
+            <!-- /.table-responsive -->
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer clearfix">
+            <%= link_to 'Place New Offer', new_offer_path, class: 'btn btn-sm btn-info btn-flat pull-left' %>
+          </div>
+          <!-- /.box-footer -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <div class="row">
 
-<%= link_to 'New Offer', new_offer_path %>
+      <div class="col-md-12">
+        <!-- PRODUCT LIST -->
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">Recently Added Offers</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+          <!-- /.box-header -->
+          <div class="box-body">
+            <ul class="products-list product-list-in-box">
+              <% @offers.all.reverse.take(3).each do |offer| %>
+                <li class="item">
+                  <div class="product-img">
+                    <%= image_tag offer.url, size:'50x50' %>
+                    <!--<img src="dist/img/default-50x50.gif" alt="Product Image">-->
+                  </div>
+                  <div class="product-info">
+                    <%= link_to offer.advertiser_name, offer.url, target: '_blank',  class: 'product-title' %>
+                    <span class="label label-warning pull-right">$1800</span>
+                    <span class="product-description"><%= offer.description %></span>
+                  </div>
+                </li>
+                <!-- /.item -->
+              <% end %>
+
+            </ul>
+          </div>
+          <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<!-- --------------------------------------------------------------------------------------------------- -->

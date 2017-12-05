@@ -34,10 +34,16 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # Gems specified for THIS project -------------------------
-# Simple Form
-# gem 'simple_form'
-# StateMachine
+# Use SimpleForm to simplify form input
+gem 'simple_form'
+# Use AASM as StateMachine manager
 gem 'aasm'
+# Use Devise for authentication
+gem 'devise'
+# Use json to prevent this nonsense error it keeps presenting me
+gem 'json'
+# --------------------------------------------------------
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
