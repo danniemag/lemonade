@@ -15,7 +15,7 @@ offers = [
     [ 'Carrefour', 'https://www.carrefour.com.br/', 'Sit dolor amet',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
     [ 'Macys', 'https://www.macys.com/', 'Consectetur adipiscing elit',
-      '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
+      '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, true],
     [ 'JCPenney', 'https://www.jcpenney.com/', 'Ut enim ad minim veniam',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
     [ 'Ebay', 'https://www.ebay.com/', 'Excepteur sint occaecat cupidatat non proident',

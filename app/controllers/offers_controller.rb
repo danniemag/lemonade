@@ -4,6 +4,25 @@ class OffersController < ApplicationController
   # GET /offers
   # GET /offers.json
   def index
+    @teste = [
+        {"name":"Beyoncé Lemonade CD Pop",
+         "image":"https://upload.wikimedia.org/wikipedia/en/5/53/Beyonce_-_Lemonade_%28Official_Album_Cover%29.png"},
+
+        {"name":"Caneca Cogumelo (Toad) Mario Bros",
+         "image":"http://s3.amazonaws.com/img.iluria.com/product/4ABFD3/B4E0B6/450xN.jpg"},
+
+        {"name":"Printed Fit & Flare Skirt, Created for Macy's",
+         "image":"https://slimages.macysassets.com/is/image/MCY/products/0/optimized/8817680_fpx.tif?op_sharpen=1&wid=400&hei=489&fit=fit,1&$filterlrg$"},
+
+        {"name":"Cachepot Echoes em Madeira Maciça 9,9 x 40 x 60 cm Jatobá - Mão e Formão",
+         "image":"https://static.carrefourdigital.com.br/medias/sys_master/images/images/hc4/h2b/h00/h00/9271335125022.jpg"},
+
+        {"name":"Kiara Embellished Peep-Toe Evening Pumps",
+         "image":"https://slimages.macysassets.com/is/image/MCY/products/7/optimized/2112357_fpx.tif??op_sharpen=1&fit=fit,1&$filterlrg$&wid=1200&hei=1467"},
+
+        {"name":"Wrist Waterproof Bluetooth Smart Watch Phone Mate For Android Samsung iPhone iOS",
+         "image":"https://sc01.alicdn.com/kf/HTB1ZILxLpXXXXcLXXXXq6xXFXXXC/Wholesale-Smart-Bluetooth-Watch-M26-Wrist-Watch.jpg"}
+    ].shuffle!
     if current_user.admin?
       @offers = Offer.all
     else
