@@ -29,8 +29,8 @@ class OffersController < ApplicationController
 
     respond_to do |format|
       if @offer.save
-        format.html { redirect_to @offer, notice: 'Offer was successfully created.' }
-        format.json { render :show, status: :created, location: @offer }
+        format.html { redirect_to offers_path, notice: 'Offer was successfully created.' }
+        format.json { render :index }
       else
         format.html { render :new }
         format.json { render json: @offer.errors, status: :unprocessable_entity }
@@ -42,8 +42,8 @@ class OffersController < ApplicationController
   def update
     respond_to do |format|
       if @offer.update(offer_params)
-        format.html { redirect_to @offer, notice: 'Offer was successfully updated.' }
-        format.json { render :show, status: :ok, location: @offer }
+        format.html { redirect_to offers_path, notice: 'Offer was successfully updated.' }
+        format.json { render :index }
       else
         format.html { render :edit }
         format.json { render json: @offer.errors, status: :unprocessable_entity }
@@ -74,6 +74,9 @@ class OffersController < ApplicationController
 
 
   def index_users
+  end
+
+  def readme
   end
 
 

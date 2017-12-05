@@ -1,5 +1,4 @@
-<!-- CONTENT  ----------------------------------------------------------------------------------------------- -->
-<!-- Content Wrapper. Contains page content -->
+<!-- CONTENT  ----------------------------------------------------------------------------------------- -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
   <section class="content-header">
@@ -30,16 +29,18 @@
       <% @offers.order(premium: :desc).each do |offer| %>
           <div class="col-md-4 col-sm-6 col-xs-12">
               <div class="info-box">
-                <%= image_tag offer.url, size:'80x80', class:'info-box-icon bg-aqua' %>
-                <% if offer.premium? %>
-                  <small class="label pull-right bg-red">Premium</small>
-                <% end %>
-                <div class="info-box-content">
-                  <span class="info-box-number"><%=offer.advertiser_name%></span>
-                  <span class="progress-description"><%=offer.description%></span>
-                  <span class="info-box-text">Offer ends <%=offer.ends_at.strftime("%d/%m/%Y %H:%m")%></span>
-                </div>
-                <!-- /.info-box-content -->
+                <a href="<%=offer.url %>">
+                  <%= image_tag offer.url, size:'80x80', class:'info-box-icon bg-aqua' %>
+                  <% if offer.premium? %>
+                    <small class="label pull-right bg-red">Premium</small>
+                  <% end %>
+                  <div class="info-box-content">
+                    <span class="info-box-number"><%=offer.advertiser_name%></span>
+                    <span class="progress-description"><%=offer.description%></span>
+                    <span class="info-box-text">Offer ends <%=offer.ends_at.strftime("%d/%m/%Y %H:%m")%></span>
+                  </div>
+                  <!-- /.info-box-content -->
+                </a>
               </div>
               <!-- /.info-box -->
           </div>
