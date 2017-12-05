@@ -4,7 +4,7 @@
   <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      Ofertas Disponíveis
+      Available Offers
       <small>Now let's get in-formation!</small>
     </h1>
     <ol class="breadcrumb">
@@ -16,26 +16,34 @@
   <!-- Main content -->
   <section class="content">
     <!-- Info boxes -->
+    <% if @offers.order(premium: :desc).count==0 %>
     <div class="row">
-      <% index = 0 %>
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <h1>
+          <span class="label bg-danger">No offers enabled at the time!</span>
+        </h1>
+      </div>
+    </div><br/>
+    <% end %>
+
+    <div class="row">
       <% @offers.order(premium: :desc).each do |offer| %>
           <div class="col-md-4 col-sm-6 col-xs-12">
-            <div class="info-box">
-              <%= image_tag @teste[index][:image], size:'80x80', class:'info-box-icon bg-aqua' %>
-              <% if offer.premium? %>
-                <small class="label pull-right bg-red">Premium</small>
-              <% end %>
-              <div class="info-box-content">
-                <span class="info-box-number"><%=offer.advertiser_name%></span>
-                <span class="progress-description"><%=@teste[index][:name]%></span>
-                <span class="info-box-text"><%=offer.starts_at%></span>
+              <div class="info-box">
+                <%= image_tag offer.url, size:'80x80', class:'info-box-icon bg-aqua' %>
+                <% if offer.premium? %>
+                  <small class="label pull-right bg-red">Premium</small>
+                <% end %>
+                <div class="info-box-content">
+                  <span class="info-box-number"><%=offer.advertiser_name%></span>
+                  <span class="progress-description"><%=offer.description%></span>
+                  <span class="info-box-text">Offer ends <%=offer.ends_at.strftime("%d/%m/%Y %H:%m")%></span>
+                </div>
+                <!-- /.info-box-content -->
               </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
+              <!-- /.info-box -->
           </div>
           <!-- /.col -->
-        <% index += 1 %>
       <% end %>
 
       <!-- fix for small devices only -->

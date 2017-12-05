@@ -10,16 +10,26 @@ User.create(email: 'admin@lemonade.com', password: 'Let*sGetInformation', admin:
 User.create(email: 'anyone@lemonade.com', password: 'Lemmon@pp', admin: false)
 
 offers = [
-    [ 'Walmart', 'https://www.walmart.com.br', 'Lorem ipsum',
+    [ 'Walmart',
+      'https://sc01.alicdn.com/kf/HTB1ZILxLpXXXXcLXXXXq6xXFXXXC/Wholesale-Smart-Bluetooth-Watch-M26-Wrist-Watch.jpg',
+      'Wrist Waterproof Bluetooth Smart Watch Phone Mate For Android Samsung iPhone iOS',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
-    [ 'Carrefour', 'https://www.carrefour.com.br/', 'Sit dolor amet',
-      '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
-    [ 'Macys', 'https://www.macys.com/', 'Consectetur adipiscing elit',
+    [ 'Carrefour',
+      'https://upload.wikimedia.org/wikipedia/en/5/53/Beyonce_-_Lemonade_%28Official_Album_Cover%29.png',
+      'Beyoncé Lemonade CD Pop',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, true],
-    [ 'JCPenney', 'https://www.jcpenney.com/', 'Ut enim ad minim veniam',
+    [ 'Macys',
+      'https://slimages.macysassets.com/is/image/MCY/products/0/optimized/8817680_fpx.tif?op_sharpen=1&wid=400&hei=489&fit=fit,1&$filterlrg$',
+      'Printed Fit & Flare Skirt, Created for Macy\'s',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
-    [ 'Ebay', 'https://www.ebay.com/', 'Excepteur sint occaecat cupidatat non proident',
+    [ 'JCPenney',
+      'https://static.carrefourdigital.com.br/medias/sys_master/images/images/hc4/h2b/h00/h00/9271335125022.jpg',
+      'Cachepot Echoes em Madeira Maciça 9,9 x 40 x 60 cm Jatobá - Mão e Formão',
       '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false],
+    [ 'Ebay',
+      'http://s3.amazonaws.com/img.iluria.com/product/4ABFD3/B4E0B6/450xN.jpg',
+      'Caneca Cogumelo (Toad) Mario Bros',
+      '2017-12-31 10:00'.to_datetime, '2018-01-02 10:00'.to_datetime, false]
 ]
 
 offers.each do |advertiser_name, url, description, starts_at, ends_at, premium |
