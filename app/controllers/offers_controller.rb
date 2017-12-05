@@ -23,6 +23,7 @@ class OffersController < ApplicationController
         {"name":"Wrist Waterproof Bluetooth Smart Watch Phone Mate For Android Samsung iPhone iOS",
          "image":"https://sc01.alicdn.com/kf/HTB1ZILxLpXXXXcLXXXXq6xXFXXXC/Wholesale-Smart-Bluetooth-Watch-M26-Wrist-Watch.jpg"}
     ].shuffle!
+
     if current_user.admin?
       @offers = Offer.all
     else
